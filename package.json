@@ -1,0 +1,29 @@
+{
+  "name": "client-server",
+  "version": "1.0.0",
+  "description": "server for padNET clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdev-pojok/clients-server.git"
+  },
+  "keywords": [
+    "nodejs",
+    "server"
+  ],
+  "author": "puji w prayitno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webdev-pojok/clients-server/issues"
+  },
+  "homepage": "https://github.com/webdev-pojok/clients-server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "promise-mysql": "^3.3.1"
+  }
+}

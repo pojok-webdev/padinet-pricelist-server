@@ -25,5 +25,12 @@ app.post('/save',(req,res) => {
         res.send(result)
     })
 })
+app.post('/update',(req,res) => {
+    console.log('update invoked bro')
+    connection.doQuery(pricelist.update(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
 
 app.listen(process.env.PORT||2219)

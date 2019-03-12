@@ -12,9 +12,9 @@ gets = ()=>{
 }
 save = obj => {
     sql = 'insert into pricelists '
-    sql+= '(servicename,capacity,basicprice,bottomprice,upperprice)'
+    sql+= '(servicename,capacity,basicprice,normalprice,bottomprice,upperprice)'
     sql+= 'values '
-    sql+= '("'+obj.servicename+'","'+obj.capacity+'",'+obj.basicprice+','+obj.bottomprice+','+obj.upperprice+')'
+    sql+= '("'+obj.servicename+'","'+obj.capacity+'",'+obj.basicprice+','+obj.normalprice+','+obj.bottomprice+','+obj.upperprice+')'
     console.log("Save SQL",sql)
     return sql
 }
@@ -23,6 +23,7 @@ update = obj => {
     sql+= 'set servicename="'+obj.servicename+'",'
     sql+= 'capacity="'+obj.capacity+'",'
     sql+= 'basicprice='+obj.basicprice+', '
+    sql+= 'normalprice='+obj.normalprice+', '
     sql+= 'bottomprice='+obj.bottomprice+', '
     sql+= 'upperprice='+obj.upperprice+' '
     sql+= 'where '

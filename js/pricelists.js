@@ -6,21 +6,44 @@ remove = obj => {
     return sql
 }
 gets = ()=>{
-    sql = 'select * from pricelists '
+    sql = 'select a.*,b.name category,c.name servicename,d.name media from pricelists a '
+    sql+= 'left outer join categories b on b.id=a.category_id '
+    sql+= 'left outer join servicenames c on c.id=a.servicename_id '
+    sql+= 'left outer join medias d on d.id=a.media_id '
     console.log("gets SQL",sql)
     return sql
 }
 save = obj => {
     sql = 'insert into pricelists '
-    sql+= '(servicename,capacity,basicprice,normalprice,bottomprice,upperprice)'
+    sql+= '('
+    sql+= 'category_id,'
+    sql+= 'servicename_id,'
+    sql+= 'media_id,'
+    sql+= 'capacity,'
+    sql+= 'basicprice,'
+    sql+= 'normalprice,'
+    sql+= 'bottomprice,'
+    sql+= 'upperprice'
+    sql+= ')'
     sql+= 'values '
-    sql+= '("'+obj.servicename+'","'+obj.capacity+'",'+obj.basicprice+','+obj.normalprice+','+obj.bottomprice+','+obj.upperprice+')'
+    sql+= '('
+    sql+= '"'+obj.category_id+'",'
+    sql+= '"'+obj.servicename_id+'",'
+    sql+= '"'+obj.media_id+'",'
+    sql+= '"'+obj.capacity+'",'
+    sql+= ' '+obj.basicprice+','
+    sql+= ' '+obj.normalprice+','
+    sql+= ' '+obj.bottomprice+','
+    sql+= ' '+obj.upperprice+' '
+    sql+= ')'
     console.log("Save SQL",sql)
     return sql
 }
 update = obj => {
     sql = 'update pricelists '
-    sql+= 'set servicename="'+obj.servicename+'",'
+    sql+= 'set category_id="'+obj.category_id+'",'
+    sql+= 'servicename_id="'+obj.servicename_id+'",'
+    sql+= 'media_id="'+obj.media_id+'",'
     sql+= 'capacity="'+obj.capacity+'",'
     sql+= 'basicprice='+obj.basicprice+', '
     sql+= 'normalprice='+obj.normalprice+', '
@@ -31,8 +54,18 @@ update = obj => {
     console.log("Update SQL",sql)
     return sql
 }
+getcapacities = obj => {
+    sql = 'select capacity from pricelists '
+    sql+= 'where '
+    sql+= 'category_id="'+obj.category_id+'" '
+    sql+= 'and servicename_id="'+obj.servicename_id+'" '
+    sql+= 'and media_id="'+obj.media_id+'" '
+    console.log("get capacities SQL",sql)
+    return sql
+}
 module.exports = {
     gets:gets,
+    getcapacities:getcapacities,
     remove:remove,
     save:save,
     update:update

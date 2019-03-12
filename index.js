@@ -2,6 +2,8 @@ var express = require('express'),
     app = express(),
     connection = require('./js/connections'),
     pricelist = require('./js/pricelists'),
+    category = require('./js/categories'),
+    servicename = require('./js/servicenames'),
     bodyParser = require('body-parser');
 app.engine('html',require('ejs').renderFile)
 app.use(function(req,res,next){
@@ -11,21 +13,21 @@ app.use(function(req,res,next){
 });
 app.use(bodyParser.json({limit:'10mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}))
-app.get('/gets',(req,res) => {
+app.get('/pricelistgets',(req,res) => {
     console.log('pricelists invoked bro')
     connection.doQuery(pricelist.gets(),result => {
         console.log('result',result)
         res.send(result)
     })
 })
-app.post('/save',(req,res) => {
+app.post('/pricelistsave',(req,res) => {
     console.log('save invoked bro')
     connection.doQuery(pricelist.save(req.body),result => {
         console.log('result',result)
         res.send(result)
     })
 })
-app.post('/update',(req,res) => {
+app.post('/pricelistupdate',(req,res) => {
     console.log('update invoked bro')
     connection.doQuery(pricelist.update(req.body),result => {
         console.log('result',result)
@@ -33,4 +35,65 @@ app.post('/update',(req,res) => {
     })
 })
 
+
+app.get('/categorygets',(req,res) => {
+    console.log('categorys invoked bro')
+    connection.doQuery(category.gets(),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/categorysave',(req,res) => {
+    console.log('save category invoked bro')
+    connection.doQuery(category.save(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/categoryupdate',(req,res) => {
+    console.log('update category invoked bro')
+    connection.doQuery(category.update(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+
+
+app.get('/servicenamegets',(req,res) => {
+    console.log('servicenames invoked bro')
+    connection.doQuery(servicename.gets(),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.get('/servicenamegetbycatgory',(req,res) => {
+    console.log('servicenames invoked bro')
+    connection.doQuery(servicename.getbycategory(),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/servicenamesave',(req,res) => {
+    console.log('save servicename invoked bro')
+    connection.doQuery(servicename.save(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/servicenameupdate',(req,res) => {
+    console.log('update servicename invoked bro')
+    connection.doQuery(servicename.update(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+
+
+app.get('/getcapacities/:category_id/:servicename_id/:media_id',(req,res) => {
+    console.log('getcapacity category invoked bro')
+    connection.doQuery(pricelist.getcapacities(req.params),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT||2219)

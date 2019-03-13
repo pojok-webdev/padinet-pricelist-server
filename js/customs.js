@@ -12,7 +12,7 @@ gets = ()=>{
     sql+= 'a.clientpichp,'
     sql+= 'a.clientemail,'
     sql+= 'a.clientaddress,'
-    sql+= 'a.activationtarget,'
+    sql+= 'date_format(activationtarget,"%d-%b-%Y") activationtarget,'
     sql+= 'a.img,'
     sql+= 'b.name branch,'
     sql+= 'c.name category,'

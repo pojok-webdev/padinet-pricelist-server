@@ -4,6 +4,7 @@ var express = require('express'),
     pricelist = require('./js/pricelists'),
     category = require('./js/categories'),
     servicename = require('./js/servicenames'),
+    custom = require('./js/customs'),
     bodyParser = require('body-parser');
 app.engine('html',require('ejs').renderFile)
 app.use(function(req,res,next){
@@ -66,9 +67,9 @@ app.get('/servicenamegets',(req,res) => {
         res.send(result)
     })
 })
-app.get('/servicenamegetbycatgory',(req,res) => {
+app.get('/servicenamegetbycatgory/:category_id',(req,res) => {
     console.log('servicenames invoked bro')
-    connection.doQuery(servicename.getbycategory(),result => {
+    connection.doQuery(servicename.getbycategory(req.params),result => {
         console.log('result',result)
         res.send(result)
     })
@@ -84,6 +85,43 @@ app.post('/servicenameupdate',(req,res) => {
     console.log('update servicename invoked bro')
     connection.doQuery(servicename.update(req.body),result => {
         console.log('result',result)
+        res.send(result)
+    })
+})
+
+
+
+
+app.get('/customgets',(req,res) => {
+    console.log('customs invoked bro')
+    connection.doQuery(custom.gets(),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/customsave',(req,res) => {
+    console.log('save servicename invoked bro')
+    connection.doQuery(custom.save(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/customupdate',(req,res) => {
+    console.log('update custom invoked bro')
+    connection.doQuery(custom.update(req.body),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.get('/customremove/:id',(req,res) => {
+    console.log('remove custom invoked bro')
+    connection.doQuery(custom.remove(req.params),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
+app.get('/getprices/:category_id/:servicename_id/:media_id/:capacity',(req,res) => {
+    connection.doQuery(custom.getprices(req.params),result => {
         res.send(result)
     })
 })

@@ -186,13 +186,12 @@ app.post('/userchangepassword',(req,res) => {
 app.post('/usercheckpassword',(req,res) => {
     const postData = req.body
     console.log('POST DATA',postData)
-    connection.doQuery(user.getHash(postData),result=>{
-        bcrypt.comparePassword({password:postData.password,hash:result[0].hash},result => {
+    connection.doQuery(user.get(postData),obj=>{
+        bcrypt.comparePassword({password:postData.password,hash:obj[0].hash},result => {
             console.log("Password compare",result)
-            res.send(result)
+            res.send({result:result,obj:obj})
         })
     })
-
 })
 app.get('/usergets',(req,res) => {
     connection.doQuery(user.gets(),result => {

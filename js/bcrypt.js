@@ -14,10 +14,9 @@ comparePassword = (obj,callback) => {
     console.log('Bcrypt input',obj)
     bcrypt.compare(obj.password,obj.hash,(err,data) => {
         if(data){
-            console.log("Password match",data)
             callback(data)
         }else{
-            callback({message:'password does not match'})
+            callback(false)
         }
         if(err){
             console.log("Password doesnt match",err)

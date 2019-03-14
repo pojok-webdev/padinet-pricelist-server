@@ -37,8 +37,8 @@ setPassword = obj => {
     console.log("Update Password SQL",sql)
     return sql
 }
-getHash = obj => {
-    sql = 'select hash from users '
+get = obj => {
+    sql = 'select id,email,username,password,hash from users '
     sql+= 'where email="'+obj.email+'" '
     return sql
 }
@@ -50,7 +50,7 @@ authenticate = obj => {
 }
 module.exports = {
     gets:gets,
-    getHash:getHash,
+    get:get,
     remove:remove,
     save:save,
     setPassword:setPassword,

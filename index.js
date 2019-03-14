@@ -5,7 +5,12 @@ var express = require('express'),
     category = require('./js/categories'),
     servicename = require('./js/servicenames'),
     custom = require('./js/customs'),
-    bodyParser = require('body-parser');
+    user = require('./js/users'),
+    bcrypt = require('./js/bcrypt'),
+    bodyParser = require('body-parser'),
+    router = express.Router(),
+    jwt = require('jsonwebtoken'),
+    tokenList = {};
 app.engine('html',require('ejs').renderFile)
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin","*");
@@ -131,6 +136,66 @@ app.get('/getcapacities/:category_id/:servicename_id/:media_id',(req,res) => {
     console.log('getcapacity category invoked bro')
     connection.doQuery(pricelist.getcapacities(req.params),result => {
         console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/login',(req,res) => {
+    const postData = req.body
+    const user = {
+        username:postData.username,
+        email:postData.email
+    }
+    const token = jwt.sign(user,'padiNEt',{expiresIn:900})
+    const refreshToken = jwt.sign(user,'surabaya',{expiresIn:1000})
+    const response = {
+        status: 'Logged in',
+        token: token,
+        refreshToken: refreshToken
+    }
+    tokenList[refreshToken] = response
+    res.status(200).json(response)
+})
+app.post('/token',(req,res) => {
+    const postData = req.body
+    if((postData.refreshToken)&&(postData.refreshToken in tokenList)){
+        const user = {
+            username:postData.username,
+            email:postData.email
+        }
+        const token = jwt.sign(user,'padiNET',{expiresIn:900})
+        const response = {
+            token:token
+        }
+        tokenList[postData.refreshToken].token = token
+        res.status(200).json(response)
+    }else{
+        res.status(404).send('Invalid request')
+    }
+})
+
+
+app.post('/userchangepassword',(req,res) => {
+    const postData = req.body
+    bcrypt.createPassword(postData,result => {
+        console.log("Password created",result)
+        connection.doQuery(user.setPassword({email:postData.email,hash:result}),result => {
+            res.send(result)
+        })
+    })
+})
+app.post('/usercheckpassword',(req,res) => {
+    const postData = req.body
+    console.log('POST DATA',postData)
+    connection.doQuery(user.getHash(postData),result=>{
+        bcrypt.comparePassword({password:postData.password,hash:result[0].hash},result => {
+            console.log("Password compare",result)
+            res.send(result)
+        })
+    })
+
+})
+app.get('/usergets',(req,res) => {
+    connection.doQuery(user.gets(),result => {
         res.send(result)
     })
 })

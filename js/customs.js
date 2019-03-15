@@ -46,7 +46,7 @@ getByMonth = obj => {
     sql+= 'left outer join categories c on c.id=a.category_id '
     sql+= 'left outer join servicenames d on d.id=a.servicename_id '
     sql+= 'left outer join medias e on e.id=a.media_id '
-    sql+= 'where date_format(quotation_date,"MMYYYY")='+b.quotation_date+' '
+    sql+= 'where date_format(quotation_date,"%m%Y")="'+obj.monthyear+'" '
     console.log("gets SQL",sql)
     return sql
 }
@@ -120,6 +120,7 @@ getprices = obj => {
 }
 module.exports = {
     gets:gets,
+    getByMonth:getByMonth,
     remove:remove,
     save:save,
     update:update,

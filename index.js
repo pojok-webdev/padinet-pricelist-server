@@ -130,6 +130,11 @@ app.get('/getprices/:category_id/:servicename_id/:media_id/:capacity',(req,res) 
         res.send(result)
     })
 })
+app.get('/getbymonth/:monthyear',(req,res) => {
+    connection.doQuery(custom.getByMonth(req.params),result => {
+        res.send(result)
+    })
+})
 
 
 app.get('/getcapacities/:category_id/:servicename_id/:media_id',(req,res) => {

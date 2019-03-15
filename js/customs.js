@@ -24,6 +24,7 @@ gets = ()=>{
     sql+= 'left outer join categories c on c.id=a.category_id '
     sql+= 'left outer join servicenames d on d.id=a.servicename_id '
     sql+= 'left outer join medias e on e.id=a.media_id '
+    sql+= 'order by a.quotation_date desc '
     console.log("gets SQL",sql)
     return sql
 }
@@ -47,6 +48,7 @@ getByMonth = obj => {
     sql+= 'left outer join servicenames d on d.id=a.servicename_id '
     sql+= 'left outer join medias e on e.id=a.media_id '
     sql+= 'where date_format(quotation_date,"%Y-%m")="'+obj.monthyear+'" '
+    sql+= 'order by a.quotation_date desc '
     console.log("gets SQL",sql)
     return sql
 }

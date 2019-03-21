@@ -6,7 +6,8 @@ remove = obj => {
     return sql
 }
 gets = ()=>{
-    sql = 'select * from users '
+    sql = 'select * from users a left outer join roles_users b on b.user_id=a.id '
+    sql+= 'where b.user_id is not null '
     console.log("gets SQL",sql)
     return sql
 }
@@ -38,7 +39,9 @@ setPassword = obj => {
     return sql
 }
 get = obj => {
-    sql = 'select id,email,username,password,hash from users '
+    sql = 'select a.id,a.email,a.username,a.password,a.hash,c.abbr roleabbr,c.name role from users a '
+    sql+= 'left outer join roles_users b on b.user_id=a.id '
+    sql+= 'left outer join roles c on c.id=b.role_id '
     sql+= 'where email="'+obj.email+'" '
     return sql
 }

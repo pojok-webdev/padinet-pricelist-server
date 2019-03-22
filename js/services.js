@@ -16,6 +16,12 @@ getsubservices = obj =>{
     console.log("getsubservices SQL",sql)
     return sql
 }
+getsubserviceslevel2 = obj =>{
+    sql = 'select * from subserviceslevel2 '
+    sql+= 'where subservice_id = ' + obj.subservice_id + ' '
+    console.log("getsubserviceslevel2 SQL",sql)
+    return sql
+}
 save = obj => {
     sql = 'insert into services '
     sql+= '(name)'
@@ -43,6 +49,7 @@ module.exports = {
     gets:gets,
     get:get,
     getsubservices:getsubservices,
+    getsubserviceslevel2:getsubserviceslevel2,
     remove:remove,
     save:save,
     update:update

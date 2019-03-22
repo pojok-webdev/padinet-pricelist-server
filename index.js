@@ -215,4 +215,9 @@ app.get('/getsubservices/:service_id',(req,res)=>{
         res.send(result)
     })
 })
+app.get('/getsubserviceslevel2/:subservice_id',(req,res)=>{
+    connection.doQuery(service.getsubserviceslevel2(req.params),result=>{
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT||2219)

@@ -6,9 +6,9 @@ var express = require('express'),
     servicename = require('./js/servicenames'),
     custom = require('./js/customs'),
     user = require('./js/users'),
+    service = require('./js/services'),
     bcrypt = require('./js/bcrypt'),
     bodyParser = require('body-parser'),
-    router = express.Router(),
     jwt = require('jsonwebtoken'),
     tokenList = {};
 app.engine('html',require('ejs').renderFile)
@@ -202,6 +202,16 @@ app.post('/usercheckpassword',(req,res) => {
 })
 app.get('/usergets',(req,res) => {
     connection.doQuery(user.gets(),result => {
+        res.send(result)
+    })
+})
+app.get('/getservices',(req,res)=>{
+    connection.doQuery(service.gets(req.params),result=>{
+        res.send(result)
+    })
+})
+app.get('/getsubservices/:service_id',(req,res)=>{
+    connection.doQuery(service.getsubservices(req.params),result=>{
         res.send(result)
     })
 })

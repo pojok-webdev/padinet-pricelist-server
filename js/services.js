@@ -55,6 +55,7 @@ get = obj => {
 module.exports = {
     gets:gets,
     get:get,
+    getsbycategory:getsbycategory,
     getsubservices:getsubservices,
     getsubserviceslevel2:getsubserviceslevel2,
     remove:remove,

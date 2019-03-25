@@ -125,7 +125,7 @@ app.get('/customremove/:id',(req,res) => {
         res.send(result)
     })
 })
-app.get('/getprices/:category_id/:servicename_id/:media_id/:capacity',(req,res) => {
+app.get('/getprices/:category_id/:service_id/:media_id/:capacity',(req,res) => {
     connection.doQuery(custom.getprices(req.params),result => {
         res.send(result)
     })
@@ -137,7 +137,7 @@ app.get('/getbymonth/:monthyear',(req,res) => {
 })
 
 
-app.get('/getcapacities/:category_id/:servicename_id/:media_id',(req,res) => {
+app.get('/getcapacities/:category_id/:service_id/:media_id',(req,res) => {
     console.log('getcapacity category invoked bro')
     connection.doQuery(pricelist.getcapacities(req.params),result => {
         console.log('result',result)

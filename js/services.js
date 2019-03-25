@@ -10,6 +10,13 @@ gets = () => {
     console.log("gets SQL",sql)
     return sql
 }
+getsbycategory = obj => {
+    sql = 'select * from services '
+    sql+= 'where category_id = ' + obj.category_id + ' '
+    console.log("gets SQL",sql)
+    return sql
+}
+
 getsubservices = obj =>{
     sql = 'select * from subservices '
     sql+= 'where service_id = ' + obj.service_id + ' '

@@ -210,6 +210,11 @@ app.get('/getservices',(req,res)=>{
         res.send(result)
     })
 })
+app.get('/getservicesbycategory/:category_id',(req,res)=>{
+    connection.doQuery(service.getsbycategory(req.params),result=>{
+        res.send(result)
+    })
+})
 app.get('/getsubservices/:service_id',(req,res)=>{
     connection.doQuery(service.getsubservices(req.params),result=>{
         res.send(result)

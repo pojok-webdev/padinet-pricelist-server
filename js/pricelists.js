@@ -58,7 +58,6 @@ getcapacities = obj => {
     sql = 'select capacity from pricelists '
     sql+= 'where '
     sql+= 'category_id="'+obj.category_id+'" '
-    sql+= 'and service_id="'+obj.service_id+'" '
     sql+= 'and subservice_id="'+obj.subservice_id+'"'
     sql+= 'and media_id="'+obj.media_id+'" '
     console.log("get capacities SQL",sql)

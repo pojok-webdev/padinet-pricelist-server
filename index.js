@@ -138,9 +138,16 @@ app.get('/getbymonth/:monthyear',(req,res) => {
 
 
 app.get('/getcapacities/:category_id/:service_id/:subservice_id/:media_id',(req,res) => {
-    console.log('getcapacity category invoked bro')
+    console.log('getcapacity invoked bro')
     connection.doQuery(pricelist.getcapacities(req.params),result => {
         console.log('result',result)
+        res.send(result)
+    })
+})
+app.post('/getprices',(req,res) => {
+    console.log('getprices invoked bro')
+    connection.doQuery(pricelist.getprices(req.body),result => {
+        console.log('getprice result',result)
         res.send(result)
     })
 })

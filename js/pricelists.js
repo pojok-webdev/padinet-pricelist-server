@@ -58,14 +58,25 @@ getcapacities = obj => {
     sql = 'select capacity from pricelists '
     sql+= 'where '
     sql+= 'category_id="'+obj.category_id+'" '
-    sql+= 'and subservice_id="'+obj.subservice_id+'"'
+    sql+= 'and subservice_id="'+obj.subservice_id+'" '
     sql+= 'and media_id="'+obj.media_id+'" '
+    console.log("get capacities SQL",sql)
+    return sql
+}
+getprices = obj => {
+    sql = 'select basicprice,normalprice,bottomprice,upperprice from pricelists '
+    sql+= 'where '
+    sql+= 'category_id="'+obj.category_id+'" '
+    sql+= 'and subservice_id="'+obj.subservice_id+'" '
+    sql+= 'and media_id="'+obj.media_id+'" '
+    sql+= 'and capacity="'+obj.capacity+'" '
     console.log("get capacities SQL",sql)
     return sql
 }
 module.exports = {
     gets:gets,
     getcapacities:getcapacities,
+    getprices:getprices,
     remove:remove,
     save:save,
     update:update

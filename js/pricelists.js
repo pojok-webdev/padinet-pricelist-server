@@ -70,7 +70,7 @@ getprices = obj => {
     sql+= 'and subservice_id="'+obj.subservice_id+'" '
     sql+= 'and media_id="'+obj.media_id+'" '
     sql+= 'and capacity="'+obj.capacity+'" '
-    console.log("get capacities SQL",sql)
+    console.log("get prices SQL",sql)
     return sql
 }
 module.exports = {

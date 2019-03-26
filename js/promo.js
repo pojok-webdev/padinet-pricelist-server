@@ -13,10 +13,10 @@ gets = ()=>{
 }
 save = obj => {
     sql = 'insert into promos '
-    sql+= '(name,termcondition,startdate,enddate,user_id,createuser)'
+    sql+= '(name,flyer,termcondition,startdate,enddate,user_id,createuser)'
     sql+= 'values '
     sql+= '('
-    sql+= '"'+obj.name+'","'+obj.termcondition+'","'+obj.startdate+'","'+obj.enddate+'","'+obj.user_id+'","'+obj.createuser+'" '
+    sql+= '"'+obj.name+'","'+obj.flyer+'","'+obj.termcondition+'","'+obj.startdate+'","'+obj.enddate+'","'+obj.user_id+'","'+obj.createuser+'" '
     sql+= ')'
     console.log("Save SQL",sql)
     return sql
@@ -24,6 +24,7 @@ save = obj => {
 update = obj => {
     sql = 'update promos '
     sql+= 'set name="'+obj.name+'", '
+    sql+= 'flyer="'+obj.flyer+'", '
     sql+= 'termcondition="'+obj.termcondition+'", '
     sql+= 'startdate="'+obj.startdate+'", '
     sql+= 'enddate="'+obj.enddate+'", '
@@ -35,7 +36,7 @@ update = obj => {
     return sql
 }
 get = obj => {
-    sql = 'select a.id,a.name,a.termcondition,a.startdate,a.enddate,a.user_id,a.createuser from promos a '
+    sql = 'select a.id,a.name,a.flyer,a.termcondition,a.startdate,a.enddate,a.user_id,a.createuser from promos a '
     sql+= 'where id="'+obj.id+'" '
     return sql
 }

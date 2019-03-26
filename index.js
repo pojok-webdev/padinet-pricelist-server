@@ -6,6 +6,7 @@ var express = require('express'),
     servicename = require('./js/servicenames'),
     custom = require('./js/customs'),
     user = require('./js/users'),
+    promo = require('./js/promo'),
     service = require('./js/services'),
     bcrypt = require('./js/bcrypt'),
     bodyParser = require('body-parser'),
@@ -232,4 +233,25 @@ app.get('/getsubserviceslevel2/:subservice_id',(req,res)=>{
         res.send(result)
     })
 })
+app.get('/promogets',(req,res) => {
+    connection.doQuery(promo.gets(),result => {
+        res.send(result)
+    })
+})
+app.post('/promosave',(req,res) => {
+    connection.doQuery(promo.save(req.body),result => {
+        res.send(result)
+    })
+})
+app.post('/promoupdate',(req,res) => {
+    connection.doQuery(promo.update(req.body),result => {
+        res.send(result)
+    })
+})
+app.get('/promoremove/:id',(req,res) => {
+    connection.doQuery(promo.remove(req.params),result => {
+        res.send(result)
+    })
+})
+
 app.listen(process.env.PORT||2219)

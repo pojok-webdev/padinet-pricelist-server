@@ -16,7 +16,13 @@ save = obj => {
     sql+= '(name,flyer,termcondition,startdate,enddate,user_id,createuser)'
     sql+= 'values '
     sql+= '('
-    sql+= '"'+obj.name+'","'+obj.flyer+'","'+obj.termcondition+'","'+obj.startdate+'","'+obj.enddate+'","'+obj.user_id+'","'+obj.createuser+'" '
+    sql+= '"'+obj.name+'",'
+    sql+= '"'+obj.flyer+'",'
+    sql+= '"'+obj.termcondition+'",'
+    sql+= '"'+obj.startdate+'",'
+    sql+= '"'+obj.enddate+'",'
+    sql+= '"'+obj.user_id+'",'
+    sql+= '"'+obj.createuser+'" '
     sql+= ')'
     console.log("Save SQL",sql)
     return sql

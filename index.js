@@ -238,6 +238,11 @@ app.get('/promogets',(req,res) => {
         res.send(result)
     })
 })
+app.get('/promoget/:id',(req,res) => {
+    connection.doQuery(promo.get(req.params),result => {
+        res.send(result)
+    })
+})
 app.post('/promosave',(req,res) => {
     connection.doQuery(promo.save(req.body),result => {
         res.send(result)

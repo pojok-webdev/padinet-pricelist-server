@@ -9,6 +9,7 @@ var express = require('express'),
     promo = require('./js/promo'),
     service = require('./js/services'),
     bcrypt = require('./js/bcrypt'),
+    mailer = require('./js/nodemailer'),
     bodyParser = require('body-parser'),
     jwt = require('jsonwebtoken'),
     tokenList = {};
@@ -109,6 +110,10 @@ app.post('/customsave',(req,res) => {
     console.log('save servicename invoked bro')
     connection.doQuery(custom.save(req.body),result => {
         console.log('result',result)
+        mailer.sendmail({
+            subject:'Pengajuan penawaran dibawah angka pricelist',
+            content:'Nama'+req.body.name
+        },rez => {})
         res.send(result)
     })
 })
@@ -258,5 +263,9 @@ app.get('/promoremove/:id',(req,res) => {
         res.send(result)
     })
 })
-
+app.post('/sendmail',(req,res) => {
+    mailer.sendmail(req.body, result => {
+        res.send(result)
+    })
+})
 app.listen(process.env.PORT||2219)

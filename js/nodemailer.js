@@ -1,4 +1,5 @@
 "use strict";
+config = require('./configs')
 const nodemailer = require("nodemailer");
 
 // async..await is not allowed in global scope, must use a wrapper
@@ -8,13 +9,14 @@ async function sendmail(obj,callback){
   // Only needed if you don't have a real mail account for testing
 
   // create reusable transporter object using the default SMTP transport
+  let mailConfig = config.mail()
   let transporter = nodemailer.createTransport({
-    host: "smtp.padi.net.id",
-    port: 25,
+    host: mailConfig.host,
+    port: mailConfig.port,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'puji@padi.net.id', // generated ethereal user
-      pass: 'sisolot' // generated ethereal password
+      user: mailConfig.user, // generated ethereal user
+      pass: mailConfig.password // generated ethereal password
     },
     tls: {rejectUnauthorized: false}
   });

@@ -10,6 +10,7 @@ var express = require('express'),
     service = require('./js/services'),
     bcrypt = require('./js/bcrypt'),
     mailer = require('./js/nodemailer'),
+    mailTemplate = require("./js/mailTemplate"),
     bodyParser = require('body-parser'),
     jwt = require('jsonwebtoken'),
     tokenList = {};
@@ -112,7 +113,15 @@ app.post('/customsave',(req,res) => {
         console.log('result',result)
         mailer.sendmail({
             subject:'Pengajuan penawaran dibawah angka pricelist',
-            content:'Nama'+req.body.name
+            content:mailTemplate.template(
+                {
+                    name:'Djamoe Iboe',
+                    address:'Mayjen Sungkono 83 Surabay',
+                    service:'Dedicated 12 Mbps',
+                    price:'7,000,000',
+                    am:'Amirun',
+                    quotation_date:'2019-4-1'
+                })
         },rez => {})
         res.send(result)
     })

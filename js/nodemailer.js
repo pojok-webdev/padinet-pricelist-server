@@ -1,7 +1,6 @@
 "use strict";
 const config = require('./configs')
 const nodemailer = require("nodemailer");
-
 // async..await is not allowed in global scope, must use a wrapper
 async function sendmail(obj,callback){
 
@@ -10,6 +9,7 @@ async function sendmail(obj,callback){
 
   // create reusable transporter object using the default SMTP transport
   let mailConfig = config.mail()
+  let template = mailTemplate.template(obj) 
   let transporter = nodemailer.createTransport({
     host: mailConfig.host,
     port: mailConfig.port,
@@ -29,7 +29,7 @@ async function sendmail(obj,callback){
     to: recipient_1, // list of receivers
     subject: obj.subject, // Subject line
     text: obj.content, // plain text body
-    html: "<b>"+obj.content+"</b>" // html body
+    html: obj.content // html body
   };
 
   // send mail with defined transport object

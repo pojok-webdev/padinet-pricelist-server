@@ -31,6 +31,32 @@ gets = ()=>{
     console.log("gets SQL",sql)
     return sql
 }
+getById = obj => {
+    sql = 'select a.clientname,'
+    sql+= 'a.clientpic,'
+    sql+= 'a.clienttlp,'
+    sql+= 'a.clientpichp,'
+    sql+= 'a.clientemail,'
+    sql+= 'a.clientaddress,'
+    sql+= 'date_format(activationtarget,"%d-%b-%Y") activationtarget,'
+    sql+= 'a.img,'
+    sql+= 'a.quotation_date,'
+    sql+= 'a.reason,'
+    sql+= 'a.customprice,'
+    sql+= 'b.name branch,'
+    sql+= 'c.name category,'
+    sql+= 'd.name service,'
+    sql+= 'e.name media, '
+    sql+= 'a.createuser '
+    sql+= 'from customs a '
+    sql+= 'left outer join branches b on b.id=a.branch_id '
+    sql+= 'left outer join categories c on c.id=a.category_id '
+    sql+= 'left outer join services d on d.id=a.service_id '
+    sql+= 'left outer join medias e on e.id=a.media_id '
+    sql+= 'where id='+obj.id+' '
+    console.log("gets SQL",sql)
+    return sql
+}
 getByMonth = obj => {
     sql = 'select a.clientname,'
     sql+= 'a.clientpic,'
@@ -134,6 +160,7 @@ getprices = obj => {
 }
 module.exports = {
     gets:gets,
+    getById:getById,
     getByMonth:getByMonth,
     remove:remove,
     save:save,

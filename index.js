@@ -107,6 +107,13 @@ app.get('/customgets',(req,res) => {
         res.send(result)
     })
 })
+app.get('/customgetbyid/:id',(req,res) => {
+    console.log('custom get by id invoked bro')
+    connection.doQuery(custom.getById(req.params),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
 app.post('/customsave',(req,res) => {
     console.log('save servicename invoked bro',req.body)
     connection.doQuery(custom.save(req.body),result => {

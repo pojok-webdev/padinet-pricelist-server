@@ -9,7 +9,6 @@ async function sendmail(obj,callback){
 
   // create reusable transporter object using the default SMTP transport
   let mailConfig = config.mail()
-  let template = mailTemplate.template(obj) 
   let transporter = nodemailer.createTransport({
     host: mailConfig.host,
     port: mailConfig.port,

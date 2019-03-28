@@ -108,7 +108,7 @@ app.get('/customgets',(req,res) => {
     })
 })
 app.post('/customsave',(req,res) => {
-    console.log('save servicename invoked bro')
+    console.log('save servicename invoked bro',req.body)
     connection.doQuery(custom.save(req.body),result => {
         console.log('result',result)
         mailer.sendmail({

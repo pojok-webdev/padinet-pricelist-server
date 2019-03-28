@@ -135,7 +135,7 @@ app.post('/customsave',(req,res) => {
                     price:req.body.customprice,
                     am:req.body.createuser,
                     quotation_date:req.body.quotation_date,
-                    url:'http://pricelists.padinet.com/approval/1'
+                    url:'http://pricelist.padinet.com/approval/1'
                 })
         },rez => {})
         res.send(result)

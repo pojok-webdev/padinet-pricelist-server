@@ -125,6 +125,7 @@ app.post('/customsave',(req,res) => {
     console.log('save servicename invoked bro',req.body)
     connection.doQuery(custom.save(req.body),result => {
         console.log('result',result)
+        console.log('result INSERT ID',result.insertId)
         mailer.sendmail({
             subject:'Pengajuan penawaran dibawah angka pricelist',
             content:mailTemplate.template(
@@ -135,7 +136,7 @@ app.post('/customsave',(req,res) => {
                     price:req.body.customprice,
                     am:req.body.createuser,
                     quotation_date:req.body.quotation_date,
-                    url:'http://pricelist.padinet.com/approval/1'
+                    url:'http://pricelist.padinet.com/approval/'+result.insertId
                 })
         },rez => {})
         res.send(result)

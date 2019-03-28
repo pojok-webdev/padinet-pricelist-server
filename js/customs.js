@@ -53,7 +53,7 @@ getById = obj => {
     sql+= 'left outer join categories c on c.id=a.category_id '
     sql+= 'left outer join services d on d.id=a.service_id '
     sql+= 'left outer join medias e on e.id=a.media_id '
-    sql+= 'where id='+obj.id+' '
+    sql+= 'where a.id='+obj.id+' '
     console.log("gets SQL",sql)
     return sql
 }

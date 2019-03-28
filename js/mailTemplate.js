@@ -13,6 +13,7 @@ template = obj => {
     txt+= '</table>'
     txt+= '</body>'
     txt+= '</html>'
+    return txt
 }
 module.exports = {
     template:template

@@ -158,6 +158,15 @@ getprices = obj => {
     sql+= 'and capacity='+obj.capacity+' '
     return sql
 }
+setApprove = obj => {
+    sql = 'update customs '
+    sql+= 'set '
+    sql+= 'approved="'+obj.approved+'" '
+    sql+= 'where '
+    sql+= 'id='+obj.id+' '
+    console.log("Approve SQL",sql)
+    return sql
+}
 module.exports = {
     gets:gets,
     getById:getById,
@@ -165,5 +174,6 @@ module.exports = {
     remove:remove,
     save:save,
     update:update,
-    getprices:getprices
+    getprices:getprices,
+    setApprove:setApprove
 }

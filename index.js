@@ -114,6 +114,13 @@ app.get('/customgetbyid/:id',(req,res) => {
         res.send(result)
     })
 })
+app.get('/setapprove/:id/:approved',(req,res) => {
+    console.log('custom approved by id invoked bro')
+    connection.doQuery(custom.setApprove(req.params),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
 app.post('/customsave',(req,res) => {
     console.log('save servicename invoked bro',req.body)
     connection.doQuery(custom.save(req.body),result => {

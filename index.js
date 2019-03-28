@@ -120,7 +120,8 @@ app.post('/customsave',(req,res) => {
                     service:'Dedicated 12 Mbps',
                     price:'7,000,000',
                     am:'Amirun',
-                    quotation_date:'2019-4-1'
+                    quotation_date:'2019-4-1',
+                    url:'http://pricelists.padinet.com/approval/1'
                 })
         },rez => {})
         res.send(result)

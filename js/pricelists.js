@@ -6,9 +6,10 @@ remove = obj => {
     return sql
 }
 gets = ()=>{
-    sql = 'select a.*,b.name category,c.name servicename,d.name media from pricelists a '
+    sql = 'select a.*,b.name category,c.name servicename,e.name subservice,d.name media from pricelists a '
     sql+= 'left outer join categories b on b.id=a.category_id '
     sql+= 'left outer join services c on c.id=a.service_id '
+    sql+= 'left outer join subservices e on e.id=a.subservice_id '
     sql+= 'left outer join medias d on d.id=a.media_id '
     console.log("gets SQL",sql)
     return sql

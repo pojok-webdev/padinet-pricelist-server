@@ -115,12 +115,12 @@ app.post('/customsave',(req,res) => {
             subject:'Pengajuan penawaran dibawah angka pricelist',
             content:mailTemplate.template(
                 {
-                    name:'Djamoe Iboe',
-                    address:'Mayjen Sungkono 83 Surabay',
-                    service:'Dedicated 12 Mbps',
-                    price:'7,000,000',
-                    am:'Amirun',
-                    quotation_date:'2019-4-1',
+                    name:req.body.clientname,
+                    address:req.body.clientaddress,
+                    service:req.body.category+' '+req.body.service+' '+req.body.media+' '+req.body.capacity,
+                    price:req.body.customprice,
+                    am:req.body.createuser,
+                    quotation_date:req.body.quotation_date,
                     url:'http://pricelists.padinet.com/approval/1'
                 })
         },rez => {})

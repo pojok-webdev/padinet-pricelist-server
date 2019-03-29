@@ -80,7 +80,10 @@ getcapacities = obj => {
     return sql
 }
 getprices = obj => {
-    sql = 'select basicprice,normalprice,bottomprice,upperprice from pricelists '
+    sql = 'select format(basicprice,2)basicprice,'
+    sql+= 'format(normalprice,2)normalprice,'
+    sql+= 'format(bottomprice,2)bottomprice,'
+    sql+= 'format(upperprice,2) upperprice from pricelists '
     sql+= 'where '
     sql+= 'category_id="'+obj.category_id+'" '
     sql+= 'and subservice_id="'+obj.subservice_id+'" '

@@ -18,8 +18,8 @@ getMedias = obj => {
     sql = "select media from pricelists a "
     sql+= "where "
     sql+= "category_id = " + obj.category_id + " "
-    sql+= "service_id = " + obj.service_id + " "
-    sql+= "subservice_id = " + obj.subservice_id + " "
+    sql+= "and service_id = " + obj.service_id + " "
+    sql+= "and subservice_id = " + obj.subservice_id + " "
     console.log("getMedias",sql)
     return sql
 }

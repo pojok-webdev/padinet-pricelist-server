@@ -183,7 +183,7 @@ app.post('/getprices',(req,res) => {
     })
 })
 app.get('/pricelistgetmedia/:category_id/:service_id/:subservice_id',(req,res) => {
-    connection.doQuery(pricelist.getMedias(obj),result => {
+    connection.doQuery(pricelist.getMedias(req.params),result => {
         res.send(result)
     })
 })

@@ -6,7 +6,12 @@ remove = obj => {
     return sql
 }
 gets = ()=>{
-    sql = 'select a.*,b.name category,c.name servicename,e.name subservice,d.name media from pricelists a '
+    sql = 'select format(a.normalprice,2)normalprice,'
+    sql+= 'format(a.basicprice,2)basicprice,'
+    sql+= 'format(a.bottomprice,2)bottomprice,'
+    sql+= 'format(a.upperprice,2)upperprice,'
+    sql+= 'a.capacity,a.media_id,a.service_id,a.subservice_id,a.category_id,a.createuser,a.createdate,'
+    sql+= 'b.name category,c.name servicename,e.name subservice,d.name media from pricelists a '
     sql+= 'left outer join categories b on b.id=a.category_id '
     sql+= 'left outer join services c on c.id=a.service_id '
     sql+= 'left outer join subservices e on e.id=a.subservice_id '

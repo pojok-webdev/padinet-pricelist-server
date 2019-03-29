@@ -15,7 +15,8 @@ gets = ()=>{
     return sql
 }
 getMedias = obj => {
-    sql = "select media from pricelists a "
+    sql = "select b.name media from pricelists a "
+    sql+= "left outer join medias b on b.id=a.media_id "
     sql+= "where "
     sql+= "category_id = " + obj.category_id + " "
     sql+= "and service_id = " + obj.service_id + " "

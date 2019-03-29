@@ -182,6 +182,11 @@ app.post('/getprices',(req,res) => {
         res.send(result)
     })
 })
+app.get('/pricelistgetmedia/:category_id/:service_id/:subservice_id',(req,res) => {
+    connection.doQuery(pricelist.getMedias(obj),result => {
+        res.send(result)
+    })
+})
 app.post('/login',(req,res) => {
     const postData = req.body
     const user = {

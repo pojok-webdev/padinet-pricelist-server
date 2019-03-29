@@ -14,6 +14,15 @@ gets = ()=>{
     console.log("gets SQL",sql)
     return sql
 }
+getMedias = obj => {
+    sql = "select media from pricelists a "
+    sql+= "where "
+    sql+= "category_id = " + obj.category_id + " "
+    sql+= "service_id = " + obj.service_id + " "
+    sql+= "subservice_id = " + obj.subservice_id + " "
+    console.log("getMedias",sql)
+    return sql
+}
 save = obj => {
     sql = 'insert into pricelists '
     sql+= '('
@@ -78,6 +87,7 @@ module.exports = {
     gets:gets,
     getcapacities:getcapacities,
     getprices:getprices,
+    getMedias:getMedias,
     remove:remove,
     save:save,
     update:update

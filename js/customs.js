@@ -176,7 +176,8 @@ getprices = obj => {
 setApprove = obj => {
     sql = 'update customs '
     sql+= 'set '
-    sql+= 'approved="'+obj.approved+'" '
+    sql+= 'approved="'+obj.approved+'", '
+    sql+= 'unapprovalreason="'+obj.unapprovalreason+'" '
     sql+= 'where '
     sql+= 'id='+obj.id+' '
     console.log("Approve SQL",sql)

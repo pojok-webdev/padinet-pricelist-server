@@ -114,9 +114,9 @@ app.get('/customgetbyid/:id',(req,res) => {
         res.send(result)
     })
 })
-app.get('/setapprove/:id/:approved',(req,res) => {
+app.post('/setapprove',(req,res) => {
     console.log('custom approved by id invoked bro')
-    connection.doQuery(custom.setApprove(req.params),result => {
+    connection.doQuery(custom.setApprove(req.body),result => {
         console.log('result',result)
         res.send(result)
     })

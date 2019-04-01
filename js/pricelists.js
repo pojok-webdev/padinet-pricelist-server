@@ -91,7 +91,7 @@ getprices = obj => {
     sql+= 'format(normalprice,2)normalpricef,'
     sql+= 'bottomprice,'
     sql+= 'format(bottomprice,2)bottompricef,'
-    sql+= 'upperprice '
+    sql+= 'upperprice, '
     sql+= 'format(upperprice,2) upperpricef '
     sql+= 'from pricelists '
     sql+= 'where '

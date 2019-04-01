@@ -6,10 +6,15 @@ remove = obj => {
     return sql
 }
 gets = ()=>{
-    sql = 'select format(a.normalprice,2)normalprice,'
-    sql+= 'format(a.basicprice,2)basicprice,'
-    sql+= 'format(a.bottomprice,2)bottomprice,'
-    sql+= 'format(a.upperprice,2)upperprice,'
+    sql = 'select '
+    sql+= 'a.normalprice,'
+    sql+= 'format(a.normalprice,2)normalpricef,'
+    sql+= 'a.basicprice,'
+    sql+= 'format(a.basicprice,2)basicpricef,'
+    sql+= 'a.bottomprice,'
+    sql+= 'format(a.bottomprice,2)bottompricef,'
+    sql+= 'a.upperprice,'
+    sql+= 'format(a.upperprice,2)upperpricef,'
     sql+= 'a.capacity,a.media_id,a.service_id,a.subservice_id,a.category_id,a.createuser,a.createdate,'
     sql+= 'b.name category,c.name servicename,e.name subservice,d.name media from pricelists a '
     sql+= 'left outer join categories b on b.id=a.category_id '
@@ -80,10 +85,15 @@ getcapacities = obj => {
     return sql
 }
 getprices = obj => {
-    sql = 'select format(basicprice,2)basicprice,'
-    sql+= 'format(normalprice,2)normalprice,'
-    sql+= 'format(bottomprice,2)bottomprice,'
-    sql+= 'format(upperprice,2) upperprice from pricelists '
+    sql = 'select basicprice,'
+    sql+= 'format(basicprice,2)basicpricef,'
+    sql+= 'normalprice,'
+    sql+= 'format(normalprice,2)normalpricef,'
+    sql+= 'bottomprice,'
+    sql+= 'format(bottomprice,2)bottompricef,'
+    sql+= 'upperprice '
+    sql+= 'format(upperprice,2) upperpricef '
+    sql+= 'from pricelists '
     sql+= 'where '
     sql+= 'category_id="'+obj.category_id+'" '
     sql+= 'and subservice_id="'+obj.subservice_id+'" '

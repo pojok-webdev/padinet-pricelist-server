@@ -21,6 +21,8 @@ gets = ()=>{
     sql+= 'c.name category,'
     sql+= 'd.name service,'
     sql+= 'e.name media, '
+    sql+= 'case a.approved when "1" then approved when "0" then "not Approved" else "" end approved ,'
+    sql+= 'a.unapprovalreason,'
     sql+= 'a.createuser '
     sql+= 'from customs a '
     sql+= 'left outer join branches b on b.id=a.branch_id '

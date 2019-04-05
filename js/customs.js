@@ -6,7 +6,7 @@ remove = obj => {
     return sql
 }
 gets = ()=>{
-    sql = 'select a.clientname,'
+    sql = 'select a.id,a.clientname,'
     sql+= 'a.clientpic,'
     sql+= 'a.clienttlp,'
     sql+= 'a.clientpichp,'
@@ -23,6 +23,7 @@ gets = ()=>{
     sql+= 'e.name media, '
     sql+= 'case a.approved when "1" then "approved" when "0" then "not Approved" else "" end approved ,'
     sql+= 'a.unapprovalreason,'
+    sql+= 'a.approvedprice,'
     sql+= 'a.createuser '
     sql+= 'from customs a '
     sql+= 'left outer join branches b on b.id=a.branch_id '

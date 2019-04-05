@@ -17,6 +17,8 @@ gets = ()=>{
     sql+= 'a.quotation_date,'
     sql+= 'a.reason,'
     sql+= 'a.customprice,'
+    sql+= 'format(a.customprice,2) custompricef,'
+    sql+= 'format(f.basicprice,2) basicpricef '
     sql+= 'b.name branch,'
     sql+= 'c.name category,'
     sql+= 'd.name service,'

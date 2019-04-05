@@ -18,6 +18,7 @@ gets = ()=>{
     sql+= 'a.reason,'
     sql+= 'a.customprice,'
     sql+= 'format(a.customprice,2) custompricef,'
+    sql+= 'format(f.basicprice,2) basicpricef, '
     sql+= 'b.name branch,'
     sql+= 'c.name category,'
     sql+= 'd.name service,'
@@ -31,6 +32,7 @@ gets = ()=>{
     sql+= 'left outer join categories c on c.id=a.category_id '
     sql+= 'left outer join services d on d.id=a.service_id '
     sql+= 'left outer join medias e on e.id=a.media_id '
+    sql+= 'left outer join pricelists f on f.category_id=c.id and f.service_id=d.id and f.media_id=e.id and f.capacity=a.capacity '
     sql+= 'order by a.quotation_date desc '
     console.log("gets SQL",sql)
     return sql

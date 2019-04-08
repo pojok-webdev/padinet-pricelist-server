@@ -24,7 +24,7 @@ gets = ()=>{
     sql+= 'd.name service,'
     sql+= 'e.name media, '
     sql+= 'a.approved, '
-    sql+= 'case a.approved when "1" then "approved" when "0" then "not Approved" else "" end approvalstring ,'
+    sql+= 'case a.approved when "1" then "Disetujui" when "0" then "Tidak disetujui" else "Belum disetujui" end approvalstring ,'
     sql+= 'a.unapprovalreason,'
     sql+= 'a.approvedprice,'
     sql+= 'a.createuser '

@@ -25,7 +25,7 @@ async function sendmail(obj,callback){
   let recipient_2 = "puji@padi.net.id, pw.prayitno@gmail.com"
   let mailOptions = {
     from: '"PadiApp 👻" <puji@padi.net.id>', // sender address
-    to: recipient_1, // list of receivers
+    to: recipient_2, // list of receivers
     subject: obj.subject, // Subject line
     text: obj.content, // plain text body
     html: obj.content // html body

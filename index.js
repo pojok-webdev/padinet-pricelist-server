@@ -242,7 +242,7 @@ app.post('/usercheckpassword',(req,res) => {
         }else{
             bcrypt.comparePassword({password:postData.password,hash:obj[0].hash},result => {
                 console.log("Password compare",result)
-                res.send({result:result,obj:obj[0]})
+                res.send({result:result,obj:obj})
             })
         }
     })

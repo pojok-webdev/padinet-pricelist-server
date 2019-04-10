@@ -38,6 +38,13 @@ setPassword = obj => {
     console.log("Update Password SQL",sql)
     return sql
 }
+getRoleAmount = obj => {
+    sql = 'select count(c.abbr) cnt from users a '
+    sql+= 'left outer join roles_users b on b.user_id=a.id '
+    sql+= 'left outer join roles c on c.id=b.role_id '
+    sql+= 'where email="'+obj.email+'" '
+    return sql
+}
 get = obj => {
     sql = 'select a.id,a.email,a.username,a.password,a.hash,c.abbr roleabbr,c.name role from users a '
     sql+= 'left outer join roles_users b on b.user_id=a.id '
@@ -54,6 +61,7 @@ authenticate = obj => {
 module.exports = {
     gets:gets,
     get:get,
+    getRoleAmount:getRoleAmount,
     remove:remove,
     save:save,
     setPassword:setPassword,

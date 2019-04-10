@@ -237,6 +237,9 @@ app.post('/usercheckpassword',(req,res) => {
     connection.doQuery(user.get(postData),obj=>{
         console.log("USER GET SQL",user.get(postData))
         console.log("USER GET OBJ",obj)
+        if(obj.length === 0){
+            res.send({result:false,obj:{}})
+        }
         bcrypt.comparePassword({password:postData.password,hash:obj[0].hash},result => {
             console.log("Password compare",result)
             res.send({result:result,obj:obj[0]})

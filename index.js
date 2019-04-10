@@ -236,7 +236,7 @@ app.post('/usercheckpassword',(req,res) => {
     console.log('POST DATA',postData)
     connection.doQuery(user.get(postData),obj=>{
         console.log("USER GET SQL",user.get(postData))
-        console.log("USER GET OBJ",obj)
+        console.log("USER GET OBJ",obj,"  OBJ Length:",obj.length)
         if(obj.length === 0){
             res.send({result:false,obj:{}})
         }

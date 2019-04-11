@@ -221,7 +221,12 @@ app.post('/token',(req,res) => {
     }
 })
 
-
+app.post('/getuserroles',(req,res) => {
+    const postData = req.body
+    connection.doQuery(user.getRoles(postData),result=>{
+        res.send(result)
+    })
+})
 app.post('/userchangepassword',(req,res) => {
     const postData = req.body
     bcrypt.createPassword(postData,result => {
@@ -242,7 +247,7 @@ app.post('/usercheckpassword',(req,res) => {
         }else{
             bcrypt.comparePassword({password:postData.password,hash:obj[0].hash},result => {
                 console.log("Password compare",result)
-                res.send({result:result,obj:obj})
+                res.send({result:result,obj:obj[0]})
             })
         }
     })

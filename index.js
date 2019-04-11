@@ -115,19 +115,22 @@ app.get('/customgetbyid/:id',(req,res) => {
     })
 })
 app.post('/setapprove',(req,res) => {
-    console.log('setapprove invoked bro')
-    connection.doQuery(custom.setApprove(req.body),result => {
+    let postData = req.body
+    console.log('setapprove invoked bro',postData)
+    connection.doQuery(custom.setApprove(postData),result => {
         console.log('result',result)
         mailer.sendmail({
             subject:'Approval Pengajuan Harga',
             content:mailTemplate.approval({
-                name:req.body.clientname,
-                address:req.body.clientaddress,
-                service:req.body.category+' '+req.body.service+' '+req.body.media+' '+req.body.capacity,
-                price:req.body.customprice,
-                am:req.body.createuser,
-                quotation_date:req.body.quotation_date,
-                url:'http://pricelist.padinet.com/approval/'+result.id
+                name:postData.clientname,
+                address:postData.clientaddress,
+                service:postData.category+' '+postData.service+' '+postData.media+' '+postData.capacity,
+                price:postData.customprice,
+                am:postData.createuser,
+                quotation_date:postData.quotation_date,
+                approved:postData.approved,
+                note:(postData.approved=='1')?'Harga yang disetujui '+postData.approvedprice:'Alasan tidak disetujui: '+postData.unapprovalreason,
+                url:'http://pricelist.padinet.com/approval/'+postData.id
             })
         },rez => {
             res.send(rez)

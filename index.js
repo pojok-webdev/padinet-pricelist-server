@@ -115,10 +115,23 @@ app.get('/customgetbyid/:id',(req,res) => {
     })
 })
 app.post('/setapprove',(req,res) => {
-    console.log('custom approved by id invoked bro')
+    console.log('setapprove invoked bro')
     connection.doQuery(custom.setApprove(req.body),result => {
         console.log('result',result)
-        res.send(result)
+        mailer.sendmail({
+            subject:'Approval Pengajuan Harga',
+            content:mailTemplate.approval({
+                name:req.body.clientname,
+                address:req.body.clientaddress,
+                service:req.body.category+' '+req.body.service+' '+req.body.media+' '+req.body.capacity,
+                price:req.body.customprice,
+                am:req.body.createuser,
+                quotation_date:req.body.quotation_date,
+                url:'http://pricelist.padinet.com/approval/'+result.id
+            })
+        },rez => {
+            res.send(rez)
+        })
     })
 })
 app.post('/customsave',(req,res) => {
@@ -128,7 +141,7 @@ app.post('/customsave',(req,res) => {
         console.log('result INSERT ID',result.insertId)
         mailer.sendmail({
             subject:'Pengajuan penawaran dibawah angka pricelist',
-            content:mailTemplate.template(
+            content:mailTemplate.proposalMail(
                 {
                     name:req.body.clientname,
                     address:req.body.clientaddress,
@@ -306,5 +319,24 @@ app.post('/sendmail',(req,res) => {
     mailer.sendmail(req.body, result => {
         res.send(result)
     })
+})
+app.post('/send_mail',(req,res) => {
+    mailer.sendmail({
+        subject:'Pengajuan penawaran dibawah angka pricelist',
+        content:mailTemplate.proposalMail(
+            {
+                name:req.body.clientname,
+                address:req.body.clientaddress,
+                service:req.body.service,
+                price:req.body.customprice,
+                am:req.body.am,
+                quotation_date:req.body.quotation_date,
+                url:'http://pricelist.padinet.com/approval/'+req.body.insertId
+            })
+    },rez => {
+        res.send(rez)
+    })
+    
+
 })
 app.listen(process.env.PORT||2219)

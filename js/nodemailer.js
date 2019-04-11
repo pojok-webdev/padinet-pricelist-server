@@ -21,11 +21,12 @@ async function sendmail(obj,callback){
   });
 
   // setup email data with unicode symbols
-  let recipient_1 = "puji@padi.net.id, ketut@padi.net.id"
+  let recipient_1 = "ketut@padi.net.id"
   let recipient_2 = "puji@padi.net.id, pw.prayitno@gmail.com"
   let mailOptions = {
     from: '"PadiApp 👻" <puji@padi.net.id>', // sender address
-    to: recipient_2, // list of receivers
+    to: recipient_1, // list of receivers
+    bcc:'puji@padi.net.id',
     subject: obj.subject, // Subject line
     text: obj.content, // plain text body
     html: obj.content // html body

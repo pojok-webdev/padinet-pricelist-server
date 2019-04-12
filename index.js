@@ -134,10 +134,11 @@ app.post('/setapprove',(req,res) => {
                 price:postData.customprice,
                 am:postData.createuser,
                 quotation_date:postData.quotation_date,
-                approved:postData.approved,
+                approved:(postData.approved==='1')?'Disetujui':'Tidak disetujui',
                 note:(postData.approved=='1')?'Harga yang disetujui '+postData.approvedprice:'Alasan tidak disetujui: '+postData.unapprovalreason,
                 url:'http://pricelist.padinet.com/approval/'+postData.id
-            })
+            }),
+            cc:postData.createuser
         },rez => {
             res.send(rez)
         })

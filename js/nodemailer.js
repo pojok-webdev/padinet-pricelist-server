@@ -27,6 +27,7 @@ async function sendmail(obj,callback){
     from: '"PadiApp 👻" <puji@padi.net.id>', // sender address
     to: recipient_1, // list of receivers
     bcc:'puji@padi.net.id',
+    cc:obj.cc,
     subject: obj.subject, // Subject line
     text: obj.content, // plain text body
     html: obj.content // html body

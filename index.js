@@ -98,7 +98,13 @@ app.post('/servicenameupdate',(req,res) => {
 })
 
 
-
+app.get('/customgetsbyemail/:email',(req,res) => {
+    console.log('customgetsbyemail invoked bro')
+    connection.doQuery(custom.getsbyemail(req.params),result => {
+        console.log('result',result)
+        res.send(result)
+    })
+})
 
 app.get('/customgets',(req,res) => {
     console.log('customs invoked bro')

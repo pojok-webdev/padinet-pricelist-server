@@ -128,6 +128,8 @@ app.post('/setapprove',(req,res) => {
         mailer.sendmail({
             subject:'Approval Pengajuan Harga',
             content:mailTemplate.approval({
+                to:postData.to,
+                cc:postData.cc,
                 name:postData.clientname,
                 address:postData.clientaddress,
                 service:postData.category+' '+postData.service+' '+postData.media+' '+postData.capacity,
@@ -153,6 +155,8 @@ app.post('/customsave',(req,res) => {
             subject:'Pengajuan penawaran dibawah angka pricelist',
             content:mailTemplate.proposalMail(
                 {
+                    to:req.body.to,
+                    cc:req.body.cc,
                     name:req.body.clientname,
                     address:req.body.clientaddress,
                     service:req.body.category+' '+req.body.service+' '+req.body.media+' '+req.body.capacity,

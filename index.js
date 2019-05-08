@@ -127,6 +127,8 @@ app.post('/setapprove',(req,res) => {
         console.log('result',result)
         mailer.sendmail({
             subject:'Approval Pengajuan Harga',
+            to:req.body.to,
+            cc:req.body.cc,
             content:mailTemplate.approval({
                 to:postData.to,
                 cc:postData.cc,
@@ -153,6 +155,8 @@ app.post('/customsave',(req,res) => {
         console.log('result INSERT ID',result.insertId)
         mailer.sendmail({
             subject:'Pengajuan penawaran dibawah angka pricelist',
+            to:req.body.to,
+            cc:req.body.cc,
             content:mailTemplate.proposalMail(
                 {
                     to:req.body.to,

@@ -101,7 +101,7 @@ app.post('/servicenameupdate',(req,res) => {
 app.get('/customgetsbyemail/:email',(req,res) => {
     console.log('customgetsbyemail invoked bro')
     connection.doQuery(custom.getsbyemail(req.params),result => {
-        console.log('result',result)
+        //console.log('result',result)
         res.send(result)
     })
 })
@@ -109,14 +109,14 @@ app.get('/customgetsbyemail/:email',(req,res) => {
 app.get('/customgets',(req,res) => {
     console.log('customs invoked bro')
     connection.doQuery(custom.gets(),result => {
-        console.log('result',result)
+        //console.log('result',result)
         res.send(result)
     })
 })
 app.get('/customgetbyid/:id',(req,res) => {
     console.log('custom get by id invoked bro')
     connection.doQuery(custom.getById(req.params),result => {
-        console.log('result',result)
+        //console.log('result',result)
         res.send(result)
     })
 })
@@ -127,8 +127,8 @@ app.post('/setapprove',(req,res) => {
         console.log('result',result)
         mailer.sendmail({
             subject:'Approval Pengajuan Harga',
-            to:req.body.to,
-            cc:req.body.cc,
+            to:postData.to,
+            cc:postData.cc,
             content:mailTemplate.approval({
                 to:postData.to,
                 cc:postData.cc,
@@ -142,7 +142,6 @@ app.post('/setapprove',(req,res) => {
                 note:(postData.approved=='1')?'Harga yang disetujui '+postData.approvedprice:'Alasan tidak disetujui: '+postData.unapprovalreason,
                 url:'http://pricelist.padinet.com/approval/'+postData.id
             }),
-            cc:postData.createuser
         },rez => {
             res.send(rez)
         })

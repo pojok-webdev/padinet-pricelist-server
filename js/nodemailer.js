@@ -30,7 +30,8 @@ async function sendmail(obj,callback){
     text: obj.content, // plain text body
     html: obj.content // html body
   };
-
+  console.log("__NODEMAILER__",obj.to,obj.cc)
+  console.log("*OBJ*",obj)
   // send mail with defined transport object
   let info = await transporter.sendMail(mailOptions)
 

@@ -88,6 +88,7 @@ getById = obj => {
     sql+= 'date_format(activationtarget,"%d-%b-%Y") activationtarget,'
     sql+= 'a.img,'
     sql+= 'a.quotation_date,'
+    sql+= 'a.capacity,'
     sql+= 'a.reason,'
     sql+= 'a.customprice,'
     sql+= 'format(a.customprice,2) custompricef,'

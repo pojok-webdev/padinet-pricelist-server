@@ -67,6 +67,7 @@ gets = ()=>{
     sql+= 'case a.approved when "1" then "Disetujui" when "0" then "Tidak disetujui" else "Belum disetujui" end approvalstring ,'
     sql+= 'a.unapprovalreason,'
     sql+= 'a.approvedprice,'
+    sql+= ' date_format(a.createdate,"%d-%b-%Y") createdate,'
     sql+= 'a.createuser '
     sql+= 'from customs a '
     sql+= 'left outer join branches b on b.id=a.branch_id '
